@@ -29,6 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "launchy"
   spec.add_dependency "rack_session_access"
   spec.add_dependency "poltergeist"
+  spec.add_dependency "railties"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
