@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["lorint@gmail.com"]
 
   spec.summary       = %q{7 Rails testing gems conveniently rolled into one}
-  spec.description   = %q{Just run rake tsuite:install and go!}
+  spec.description   = %q{Just run rails g tsuite:install and start testing with rspec and cucumber!}
   spec.homepage      = "https://github.com/lorint/tsuite"
   spec.license       = "MIT"
 
@@ -39,5 +39,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
 
-  spec.post_install_message = "Your test suite is complete, and now you can run \"rake tsuite:install\"."
+  spec.post_install_message = "Your test suite is complete, and now you can run \"rails g tsuite:install\"."
 end

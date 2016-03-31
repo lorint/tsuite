@@ -10,8 +10,9 @@ module Tsuite
     # Can add command line options defined like Thor:
 #    class_option :extra, :desc => "Add extra stuff", :type => :boolean, :default => false
     # Reference these options later with options[:my_opt]
-
-    generate "rspec:install"
-    generate "cucumber:install"
+    def install
+      generate "rspec:install"
+      generate "cucumber:install"
+    end
   end
 end
