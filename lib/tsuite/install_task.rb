@@ -1,6 +1,8 @@
 module Tsuite
 	class InstallTask
-    include Rake::DSL if defined? Rake::DSL
+		if defined? Rake::DSL
+	    include Rake::DSL
+	  end
     def install_tasks
 			namespace :tsuite do
 			  desc 'Set up rspec and cucumber environments'

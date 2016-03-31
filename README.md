@@ -1,41 +1,63 @@
 # Tsuite
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/tsuite`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
-## Installation
-
-Add this line to your application's Gemfile:
+Ever get tired of adding multiple gems for testing Rails apps?  Add this one line to your Gemfile:
 
 ```ruby
-gem 'tsuite'
+gem 'tsuite', group: :test
 ```
 
-And then execute:
+and you'll get these 7 gems:
 
-    $ bundle
+* rspec-rails
+* cucumber-rails
+* database_cleaner
+* simplecov
+* launchy
+* rack_session_access
+* poltergeist
 
-Or install it yourself as:
+Bundle, and then it's easy to configure everything with one generator:
 
-    $ gem install tsuite
+    $ rails g tsuite:install
 
-## Usage
+Additionally, with RSpec tests you have a new block you can use to selectively
+cause a group of "it" blocks to run sequentially, without transaction rollbacks:
 
-TODO: Write usage instructions here
+```ruby
+describe Item do
+  before(:all) do
+    @red_item = Item.create(color: "red", is_fixed_color: false, cost: 100)
+    @blue_item = Item.create(color: "red", is_fixed_color: true, cost: 100)
+  end
 
-## Development
+  context "with a non-fixed color"
+    without_transactions do
+      it "should be able to change color" do
+        @red_item.update(color: "green")
+        expect(@red_item).to be_valid
+      end
+      it "will still be the same changed color in another example" do
+        # Look ma, no rollback:
+        expect(@red_item.color).to eq("green")
+      end
+    end
+  end
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+  context "with a fixed color"
+    # ...
+  end
+end
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+## A shout out:
+
+Props out to Ketan Patel who came up with the original idea for this gem.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/tsuite. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/lorint/tsuite. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
