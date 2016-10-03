@@ -1,7 +1,7 @@
 require 'rails/generators'
 module Tsuite
   class InstallGenerator < Rails::Generators::Base
-    desc "Add the rspec \"spec\" and cucumber \"features\" folders"
+    desc "Add the rspec \"spec\" and cucumber \"features\" folders, plus support for @poltergeist"
 
     def self.source_root
       @source_root ||= File.join(File.dirname(__FILE__), 'templates')

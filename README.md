@@ -56,6 +56,7 @@ syntax:
 ```ruby
   @poltergeist
   Scenario: Viewing the home page
+    Given I am logged on as a "Travel Agent"
     When p_I go to the home page
     Then p_I should see a list of countries
 ```
