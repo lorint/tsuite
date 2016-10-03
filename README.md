@@ -31,7 +31,7 @@ describe Item do
   end
 
   context "with a non-fixed color"
-    without_transactions do
+    without_transactions do  # <== MAKES THIS PART RUN CUMULATIVELY
       it "should be able to change color" do
         @red_item.update(color: "green")
         expect(@red_item).to be_valid
