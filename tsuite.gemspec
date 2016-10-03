@@ -22,13 +22,15 @@ Gem::Specification.new do |spec|
     raise "RubyGems 2.0 or newer is required to protect against public gem pushes."
   end
 
+  spec.add_dependency "selenium-webdriver"
+  spec.add_dependency "poltergeist"
   spec.add_dependency "rspec-rails"
   spec.add_dependency "cucumber-rails"
   spec.add_dependency "database_cleaner"
   spec.add_dependency "simplecov"
   spec.add_dependency "launchy"
   spec.add_dependency "rack_session_access"
-  spec.add_dependency "poltergeist"
+
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"

@@ -49,6 +49,17 @@ describe Item do
 end
 ```
 
+Another enhancement for Cucumber testing is to allow most scenarios to run
+with Selenium, and only run selective scenarios with Poltergeist by using this
+syntax:
+
+```ruby
+  @poltergeist
+  Scenario: Viewing the home page
+    When p_I go to the home page
+    Then p_I should see a list of countries
+```
+
 ## A shout out:
 
 Props out to Ketan Patel who came up with the original idea for this gem.

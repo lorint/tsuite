@@ -13,6 +13,7 @@ module Tsuite
     def install
       generate "rspec:install"
       generate "cucumber:install"
+      template 'features/support/poltergeist.rb'
     end
   end
 end
